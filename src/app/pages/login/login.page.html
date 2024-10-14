@@ -1,0 +1,51 @@
+<app-header titulo="login"></app-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+        <ion-col size="12" size-lg="3">
+
+            <ion-card>
+                <ion-img src="/assets/logo/image.png"></ion-img>
+            </ion-card>
+
+            <ion-card-header>
+            </ion-card-header>
+          </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+<ion-card>
+  <ion-list>
+    <!-- Usuario con estilo solid -->
+    <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-input type="text" fill="solid" placeholder="Ingrese su correo" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+
+    <!-- Contraseña con estilo outline -->
+    <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-input type="password" maxlength="4" fill="outline" placeholder="Ingrese su contraseña" [(ngModel)]="contrasena"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding ion-text-center">
+    <ion-button (click)="iniciarSesion()">Iniciar Sesión</ion-button>
+  </div>
+
+  <div class="ion-text-center"  >
+    ¿Olvido su contraseña?
+    <p  routerLink="/restablecer-contrasena" >Restablecer contrseña</p>
+  </div>
+
+  <!-- Usa el componente del spinner de carga -->
+  <app-spinner-carga class="centrar-spinner" *ngIf="isLoading"></app-spinner-carga>
+
+  <!-- Mensaje de login correcto o incorrecto -->
+  <p class="ion-text-center" *ngIf="mensaje">{{ mensaje }}</p>
+</ion-card>
+</ion-content>
