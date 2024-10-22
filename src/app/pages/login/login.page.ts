@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -23,9 +24,10 @@ export class LoginPage {
     this.isLoading = true;
     this.mensaje = '';
 
-
     setTimeout(async () => {
-      const loginExitoso = this.usuario === 'test@cliente.com' && this.contrasena === 'password';
+
+      const dominio = this.usuario.split('@')[1];
+      const loginExitoso = (dominio === 'cliente.com' || dominio === 'prestador.com') && this.contrasena === '1234';
 
       if (loginExitoso) {
         this.mensaje = 'Inicio de sesión correcto';
@@ -36,14 +38,14 @@ export class LoginPage {
 
         if (dominio === 'cliente.com') {
           ruta = '/home-cliente';
-        } else if (dominio === 'prestador') {
+        } else if (dominio === 'prestador.com') {
           ruta = '/home-prestador';
         } else {
           ruta = '/home-general';
         }
 
+        // Redirección y muestra de mensaje de éxito
         this.router.navigate([ruta]).then(async () => {
-
           const alert = await this.alertController.create({
             backdropDismiss: false,
             header: this.usuario,
